@@ -1,216 +1,274 @@
-/* =========================================
-   FRAME//BREAK
-   Interactive JavaScript
-========================================= */
+let currentPanel = 0;
+let soundOn = true;
 
+const panels = [
 
-/* =========================================
-   START STORY
-========================================= */
-
-function startStory() {
-
-    const story = document.getElementById("story");
-
-    story.scrollIntoView({
-        behavior: "smooth"
-    });
-
-}
-
-
-/* =========================================
-   TALK TO CHARACTER
-========================================= */
-
-function talkToCharacter() {
-
-    const response = document.getElementById("reader-response");
-
-    response.textContent =
-        "THE CHARACTER HEARD YOU. 👁";
-
-    response.style.animation = "none";
-
-    setTimeout(function () {
-
-        response.style.animation = "glitch 0.5s";
-
-    }, 50);
-
-}
-
-
-/* =========================================
-   SCROLL REVEAL
-   Panels become visible as the
-   user scrolls.
-========================================= */
-
-const revealPanels = document.querySelectorAll(".reveal");
-
-const revealObserver = new IntersectionObserver(
-
-    function(entries) {
-
-        entries.forEach(function(entry) {
-
-            if (entry.isIntersecting) {
-
-                entry.target.classList.add("active");
-
-            }
-
-        });
-
+    {
+        title: "THE STRANGE WATCH",
+        emoji: "⌚",
+        text: "Aarav is running late for college when he notices an old man dropping a strange silver watch.",
+        dialogue: '"Don\'t wear it."',
+        effect: "CLICK!",
+        background: "#3a3a3a"
     },
 
     {
-        threshold: 0.15
+        title: "10 SECONDS",
+        emoji: "⏱️",
+        text: "A bus suddenly comes speeding toward Aarav. He closes his eyes... and everything stops.",
+        dialogue: '"WHAT?!"',
+        effect: "FREEZE!",
+        timer: true,
+        background: "#17202a"
+    },
+
+    {
+        title: "THE RULE",
+        emoji: "⚠️",
+        text: "The watch can freeze time for exactly 10 seconds. But one strange rule appears.",
+        dialogue: '"YOU MAY CHANGE ANYTHING... EXCEPT THE FUTURE."',
+        effect: "WARNING!",
+        background: "#3d2b1f"
+    },
+
+    {
+        title: "THE FUN BEGINS",
+        emoji: "😂",
+        text: "Aarav starts using his new power for completely ridiculous things. Moving phones. Stealing his lunch back. Even changing his teacher's presentation.",
+        dialogue: '"I LOVE HOMEWORK ❤️"',
+        effect: "HAHA!",
+        background: "#263238"
+    },
+
+    {
+        title: "THE GIRL WHO CAN MOVE",
+        emoji: "👧",
+        text: "One afternoon, Aarav freezes time. But someone else is moving. A mysterious girl walks straight toward him.",
+        dialogue: '"You\'re wearing it."',
+        effect: "WHOOSH!",
+        background: "#311b3b"
+    },
+
+    {
+        title: "THE TRUTH",
+        emoji: "🔮",
+        text: "Mira reveals the truth. The watch doesn't stop time. It steals 10 seconds from the future and gives them to the present.",
+        dialogue: '"Every second has a price."',
+        effect: "REVEAL!",
+        background: "#17202a"
+    },
+
+    {
+        title: "THE COUNTDOWN",
+        emoji: "💥",
+        text: "The watch suddenly begins counting down. Someone is taking back every second Aarav stole.",
+        dialogue: '"09:59... 09:58... 09:57..."',
+        effect: "TICK! TICK!",
+        timer: true,
+        background: "#4a1717"
+    },
+
+    {
+        title: "THE CHASE",
+        emoji: "🏃",
+        text: "A masked man appears. He can move during frozen time too. Aarav runs through a city where everything is completely frozen.",
+        dialogue: '"Give me the watch."',
+        effect: "RUN!",
+        background: "#202020"
+    },
+
+    {
+        title: "THE TWIST",
+        emoji: "😱",
+        text: "Aarav catches the masked man and removes his mask. His heart stops. The man is... Aarav. But much older.",
+        dialogue: '"I came back because you haven\'t made the mistake yet."',
+        effect: "SHOCK!",
+        background: "#111111"
+    },
+
+    {
+        title: "THE CHOICE",
+        emoji: "⌚",
+        text: "Millions of people are frozen. Aarav finally understands the cost of the watch. He has only two choices.",
+        dialogue: '"KEEP THE WATCH... OR DESTROY IT."',
+        effect: "CRACK!",
+        background: "#000000"
     }
 
-);
+];
 
+function startStory() {
 
-/* Observe every comic panel */
+    document.getElementById("home").style.display = "none";
+    document.getElementById("story").style.display = "block";
 
-revealPanels.forEach(function(panel) {
-
-    revealObserver.observe(panel);
-
-});
-
-
-/* =========================================
-   FRAME BREAK
-========================================= */
-
-function breakFrame() {
-
-    const panel = document.getElementById("break-panel");
-
-    panel.classList.add("frame-breaking");
-
-    panel.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
-
-    setTimeout(function() {
-
-        panel.classList.remove("frame-breaking");
-
-    }, 1800);
+    showPanel();
 
 }
 
+function showPanel() {
 
-/* =========================================
-   STORY ENDINGS
-========================================= */
+    const panel = panels[currentPanel];
 
-function chooseEnding(choice) {
+    document.getElementById("panelNumber").textContent =
+        String(currentPanel + 1).padStart(2, "0");
 
-    const ending = document.getElementById("ending");
+    document.getElementById("panelTitle").textContent =
+        panel.title;
 
-    const endingTitle =
-        document.getElementById("ending-title");
+    document.getElementById("panelText").textContent =
+        panel.text;
 
-    const endingText =
-        document.getElementById("ending-text");
+    document.getElementById("dialogue").textContent =
+        panel.dialogue;
 
-    const endingArt =
-        document.getElementById("ending-art");
+    document.getElementById("soundEffect").textContent =
+        panel.effect;
 
+    document.getElementById("emoji").textContent =
+        panel.emoji;
 
-    /* -------------------------
-       ENDING 1
-    ------------------------- */
+    document.getElementById("scene").style.backgroundColor =
+        panel.background;
 
-    if (choice === "escape") {
+    /* TIMER */
 
-        endingTitle.textContent =
-            "FRAME BROKEN.";
+    const timer = document.getElementById("timer");
 
-        endingText.textContent =
-            "You chose to break the frame. The character steps beyond the panel, leaving the comic world behind. But somewhere in the empty page, a new panel begins drawing itself...";
+    if (panel.timer) {
 
-        endingArt.style.transform =
-            "rotate(-8deg) scale(1.2)";
+        timer.classList.add("active");
 
-    }
+        startTimer();
 
+    } else {
 
-    /* -------------------------
-       ENDING 2
-    ------------------------- */
-
-    else {
-
-        endingTitle.textContent =
-            "THE STORY CONTINUES.";
-
-        endingText.textContent =
-            "You chose to stay. The panels close around you, but the character smiles. Maybe being inside the story isn't a prison after all. Maybe it is where the next chapter begins.";
-
-        endingArt.style.transform =
-            "rotate(8deg) scale(0.9)";
+        timer.classList.remove("active");
 
     }
 
+    /* PROGRESS */
 
-    /* Show ending */
+    const progress =
+        ((currentPanel + 1) / panels.length) * 100;
 
-    ending.scrollIntoView({
-        behavior: "smooth"
-    });
+    document.getElementById("progressBar").style.width =
+        progress + "%";
+
+    /* BUTTONS */
+
+    document.getElementById("prevBtn").disabled =
+        currentPanel === 0;
+
+    document.getElementById("nextBtn").textContent =
+        currentPanel === panels.length - 1
+            ? "FINISH ▶"
+            : "NEXT ▶";
+
+    /* ANIMATION */
+
+    const scene = document.getElementById("scene");
+
+    scene.style.transform = "scale(.96)";
+
+    setTimeout(() => {
+
+        scene.style.transform = "scale(1)";
+
+    }, 100);
 
 }
 
+function nextPanel() {
 
-/* =========================================
-   RESTART
-========================================= */
+    if (currentPanel < panels.length - 1) {
+
+        currentPanel++;
+
+        showPanel();
+
+    } else {
+
+        finishStory();
+
+    }
+
+}
+
+function previousPanel() {
+
+    if (currentPanel > 0) {
+
+        currentPanel--;
+
+        showPanel();
+
+    }
+
+}
+
+function finishStory() {
+
+    document.getElementById("story").style.display =
+        "none";
+
+    document.getElementById("endScreen").style.display =
+        "flex";
+
+}
 
 function restartStory() {
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+    currentPanel = 0;
+
+    document.getElementById("endScreen").style.display =
+        "none";
+
+    document.getElementById("story").style.display =
+        "block";
+
+    showPanel();
 
 }
 
+function toggleSound() {
 
-/* =========================================
-   RETURN TO COVER
-========================================= */
+    soundOn = !soundOn;
 
-function scrollToTop() {
+    const button =
+        document.getElementById("soundBtn");
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+    button.textContent =
+        soundOn ? "🔊 Sound" : "🔇 Muted";
 
 }
 
+/* COUNTDOWN */
 
-/* =========================================
-   SMALL PARALLAX EFFECT
-========================================= */
+let countdownInterval;
 
-window.addEventListener("scroll", function() {
+function startTimer() {
 
-    const cover = document.querySelector(".cover-content");
+    clearInterval(countdownInterval);
 
-    const scrollPosition = window.scrollY;
+    let seconds = 10;
 
-    if (scrollPosition < window.innerHeight) {
+    document.getElementById("time").textContent =
+        seconds;
 
-        cover.style.transform =
-            `translateY(${scrollPosition * 0.15}px)`;
+    countdownInterval = setInterval(() => {
 
-    }
+        seconds--;
 
-});
+        document.getElementById("time").textContent =
+            seconds;
+
+        if (seconds <= 0) {
+
+            clearInterval(countdownInterval);
+
+        }
+
+    }, 1000);
+
+}
