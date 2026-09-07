@@ -3,321 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>FRAME//BREAK — An Interactive Manga</title>
-
+    <title>The Boy Who Stole 10 Seconds</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- =========================
-         INTRO / COVER
-    ========================== -->
-    <header class="cover" id="top">
+    <!-- HEADER -->
+    <header class="top-bar">
+        <div class="logo">⚡ PANEL MODE</div>
+        <button id="soundBtn" onclick="toggleSound()">🔊 Sound</button>
+    </header>
 
-        <div class="halftone"></div>
-
-        <div class="cover-content">
-
-            <p class="small-title">AN INTERACTIVE MANGA EXPERIENCE</p>
-
-            <h1>FRAME<span>//</span>BREAK</h1>
-
+    <!-- TITLE SCREEN -->
+    <section id="home" class="home-screen">
+        <div class="title-box">
+            <p class="small-title">AN INTERACTIVE COMIC</p>
+            <h1>THE BOY WHO<br><span>STOLE 10 SECONDS</span></h1>
             <p class="subtitle">
-                What if the character inside the comic<br>
-                discovered YOU?
+                Every second has a price.
             </p>
 
-            <div class="cover-line"></div>
-
-            <button class="comic-button" onclick="startStory()">
-                START THE STORY →
+            <button class="start-btn" onclick="startStory()">
+                START STORY ▶
             </button>
+        </div>
+    </section>
 
-            <p class="scroll-hint">↓ SCROLL TO ENTER THE FRAME ↓</p>
+    <!-- STORY -->
+    <main id="story" class="story-screen">
+
+        <div class="comic-wrapper">
+
+            <!-- PANEL -->
+            <div class="comic-panel">
+
+                <div class="panel-number">
+                    PANEL <span id="panelNumber">01</span> / 10
+                </div>
+
+                <div class="scene" id="scene">
+
+                    <div class="speed-lines"></div>
+
+                    <div class="scene-content">
+                        <div id="emoji" class="scene-emoji">⌚</div>
+
+                        <h2 id="panelTitle">
+                            THE STRANGE WATCH
+                        </h2>
+
+                        <p id="panelText">
+                            Aarav is running late for college when he notices
+                            an old man dropping a strange silver watch.
+                        </p>
+
+                        <div id="dialogue" class="speech-bubble">
+                            "Don't wear it."
+                        </div>
+
+                        <div id="soundEffect" class="sound-effect">
+                            CLICK!
+                        </div>
+
+                        <!-- COUNTDOWN -->
+                        <div id="timer" class="timer">
+                            <span id="time">10</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CONTROLS -->
+            <div class="controls">
+
+                <button id="prevBtn" onclick="previousPanel()">
+                    ◀ PREVIOUS
+                </button>
+
+                <div class="progress">
+                    <div id="progressBar"></div>
+                </div>
+
+                <button id="nextBtn" onclick="nextPanel()">
+                    NEXT ▶
+                </button>
+
+            </div>
 
         </div>
 
-    </header>
-
-
-    <!-- =========================
-         STORY
-    ========================== -->
-
-    <main id="story">
-
-        <!-- PANEL 1 -->
-        <section class="comic-panel panel-one reveal">
-
-            <div class="panel-number">01</div>
-
-            <div class="narration">
-                11:47 PM — SOMEWHERE BETWEEN<br>
-                A PAGE AND A DREAM...
-            </div>
-
-            <div class="character hero">
-                <div class="head"></div>
-                <div class="body"></div>
-            </div>
-
-            <div class="speech-bubble bubble-one">
-                "Where... am I?"
-            </div>
-
-            <div class="sound-effect">
-                WAKE!
-            </div>
-
-        </section>
-
-
-        <!-- PANEL 2 -->
-        <section class="comic-panel panel-two reveal">
-
-            <div class="panel-number">02</div>
-
-            <div class="narration">
-                EVERYTHING LOOKED NORMAL.
-                <br>
-                EXCEPT...
-            </div>
-
-            <div class="city-lines"></div>
-
-            <div class="speech-bubble bubble-two">
-                "Why can't I walk past this line?"
-            </div>
-
-            <div class="panel-border-warning">
-                <span>WARNING</span>
-                <br>
-                PANEL BOUNDARY
-            </div>
-
-            <div class="sound-effect small-sfx">
-                THUD!
-            </div>
-
-        </section>
-
-
-        <!-- PANEL 3 -->
-        <section class="comic-panel panel-three reveal">
-
-            <div class="panel-number">03</div>
-
-            <div class="narration">
-                THEN THE CHARACTER<br>
-                LOOKED STRAIGHT AT YOU.
-            </div>
-
-            <div class="giant-eye"></div>
-
-            <div class="speech-bubble bubble-three">
-                "Hey..."
-                <br><br>
-                "You're reading this, aren't you?"
-            </div>
-
-            <button class="comic-button tiny-button" onclick="talkToCharacter()">
-                TALK BACK
-            </button>
-
-            <p id="reader-response" class="reader-response"></p>
-
-        </section>
-
-
-        <!-- PANEL 4 -->
-        <section class="comic-panel panel-four reveal">
-
-            <div class="panel-number">04</div>
-
-            <div class="glitch-text">
-                SOMETHING<br>
-                IS WRONG.
-            </div>
-
-            <div class="broken-panel">
-                <span>THIS</span>
-                <span>ISN'T</span>
-                <span>THE</span>
-                <span>SAME</span>
-                <span>PAGE.</span>
-            </div>
-
-            <div class="speech-bubble bubble-four">
-                "The panels are moving..."
-            </div>
-
-            <div class="sound-effect crack">
-                CRACK!
-            </div>
-
-        </section>
-
-
-        <!-- PANEL 5 -->
-        <section class="comic-panel panel-five reveal">
-
-            <div class="panel-number">05</div>
-
-            <div class="mysterious-symbol">
-                <span>F</span>
-                <span>R</span>
-                <span>A</span>
-                <span>M</span>
-                <span>E</span>
-                <strong>//</strong>
-                <span>B</span>
-                <span>R</span>
-                <span>E</span>
-                <span>A</span>
-                <span>K</span>
-            </div>
-
-            <div class="narration center-text">
-                A SYMBOL APPEARED<br>
-                BETWEEN THE PANELS.
-            </div>
-
-            <div class="speech-bubble bubble-five">
-                "Maybe this is the way out."
-            </div>
-
-        </section>
-
-
-        <!-- PANEL 6 -->
-        <section class="comic-panel panel-six reveal" id="break-panel">
-
-            <div class="panel-number">06</div>
-
-            <div class="glitch-screen">
-                <div>REALITY.EXE</div>
-                <div>NOT FOUND</div>
-                <div>████████████</div>
-            </div>
-
-            <div class="speech-bubble bubble-six">
-                "I can feel the page breaking!"
-            </div>
-
-            <div class="sound-effect huge-sfx">
-                WHOOSH!
-            </div>
-
-            <button class="comic-button break-button" onclick="breakFrame()">
-                ⚡ BREAK THE FRAME
-            </button>
-
-        </section>
-
-
-        <!-- PANEL 7 -->
-        <section class="choice-panel reveal">
-
-            <div class="panel-number">07</div>
-
-            <h2>THE FINAL PANEL</h2>
-
-            <p class="choice-text">
-                The frame is weakening.
-                <br>
-                The character turns toward you.
-            </p>
-
-            <div class="speech-bubble final-bubble">
-                "It's your choice now."
-                <br><br>
-                "Do we escape together?"
-            </div>
-
-            <div class="choices">
-
-                <button class="choice-button" onclick="chooseEnding('escape')">
-                    ⚡ BREAK OUT
-                </button>
-
-                <button class="choice-button" onclick="chooseEnding('stay')">
-                    📖 STAY IN THE STORY
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- PANEL 8 — RESULT -->
-        <section class="ending-panel" id="ending">
-
-            <div id="ending-content">
-
-                <div class="panel-number">08</div>
-
-                <h2 id="ending-title"></h2>
-
-                <p id="ending-text"></p>
-
-                <div id="ending-art"></div>
-
-                <button class="comic-button" onclick="restartStory()">
-                    ↻ READ AGAIN
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- PANEL 9 -->
-        <section class="final-panel">
-
-            <div class="final-glitch"></div>
-
-            <p>END OF CHAPTER?</p>
-
-            <h2>
-                YOU ARE OUTSIDE<br>
-                THE FRAME...
-            </h2>
-
-            <h3>OR ARE YOU?</h3>
-
-            <div class="final-symbol">
-                FRAME//BREAK
-            </div>
-
-            <button class="comic-button" onclick="scrollToTop()">
-                ↟ RETURN TO COVER
-            </button>
-
-        </section>
-
     </main>
 
+    <!-- END SCREEN -->
+    <section id="endScreen" class="end-screen">
 
-    <!-- =========================
-         FOOTER
-    ========================== -->
+        <div class="end-box">
 
-    <footer>
+            <p class="small-title">THE END</p>
 
-        <p>FRAME//BREAK</p>
+            <h1>OR IS IT?</h1>
 
-        <p>
-            An interactive comic experience
-        </p>
+            <p>
+                Every story is controlled by choices.
+                Every second has a consequence.
+            </p>
 
-        <p class="footer-small">
-            Built for BLOCK SHIFT • ROUND 1
-        </p>
+            <button class="start-btn" onclick="restartStory()">
+                ↻ READ AGAIN
+            </button>
 
-    </footer>
+        </div>
 
+    </section>
 
     <script src="script.js"></script>
 
