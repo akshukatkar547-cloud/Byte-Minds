@@ -1,0 +1,982 @@
+/* =========================================
+   FRAME//BREAK
+   Main Comic / Manga Styling
+========================================= */
+
+
+/* ---------- BASIC RESET ---------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #111;
+    color: #111;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   COVER
+========================================= */
+
+.cover {
+    min-height: 100vh;
+    background: #f5f0df;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-bottom: 12px solid #111;
+}
+
+.cover-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    padding: 30px;
+}
+
+.small-title {
+    font-weight: bold;
+    letter-spacing: 5px;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.cover h1 {
+    font-size: clamp(70px, 13vw, 170px);
+    font-weight: 1000;
+    line-height: 0.85;
+    letter-spacing: -8px;
+    text-shadow: 7px 7px 0 #fff;
+}
+
+.cover h1 span {
+    color: #d62828;
+}
+
+.subtitle {
+    margin-top: 35px;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+.cover-line {
+    width: 180px;
+    height: 7px;
+    background: #111;
+    margin: 30px auto;
+    transform: rotate(-2deg);
+}
+
+
+/* =========================================
+   HALFTONE EFFECT
+========================================= */
+
+.halftone {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+
+    background-image: radial-gradient(#111 1.5px, transparent 1.5px);
+    background-size: 10px 10px;
+
+    opacity: 0.12;
+
+    right: -100px;
+    top: -100px;
+}
+
+.cover::after {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+
+    background-image: radial-gradient(#d62828 1.5px, transparent 1.5px);
+    background-size: 9px 9px;
+
+    opacity: 0.15;
+
+    left: -150px;
+    bottom: -100px;
+}
+
+
+/* =========================================
+   COMIC BUTTONS
+========================================= */
+
+.comic-button,
+.choice-button {
+    border: 4px solid #111;
+    background: #fff;
+    padding: 15px 25px;
+    font-weight: 900;
+    font-size: 16px;
+    cursor: pointer;
+
+    box-shadow: 6px 6px 0 #111;
+
+    transition: 0.2s ease;
+}
+
+.comic-button:hover,
+.choice-button:hover {
+    transform: translate(4px, 4px);
+    box-shadow: 2px 2px 0 #111;
+}
+
+.comic-button:active,
+.choice-button:active {
+    transform: translate(6px, 6px);
+    box-shadow: none;
+}
+
+.scroll-hint {
+    margin-top: 40px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+    50% {
+        transform: translateY(8px);
+    }
+}
+
+
+/* =========================================
+   STORY
+========================================= */
+
+#story {
+    background: #222;
+    padding: 30px;
+}
+
+.comic-panel,
+.choice-panel,
+.ending-panel,
+.final-panel {
+    min-height: 80vh;
+    max-width: 1200px;
+    margin: 40px auto;
+
+    position: relative;
+    overflow: hidden;
+
+    border: 8px solid #111;
+
+    background: #f5f0df;
+
+    box-shadow: 12px 12px 0 #000;
+
+    padding: 50px;
+}
+
+
+/* =========================================
+   PANEL NUMBERS
+========================================= */
+
+.panel-number {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+
+    font-weight: 1000;
+    font-size: 18px;
+
+    background: #111;
+    color: white;
+
+    padding: 6px 12px;
+
+    transform: rotate(-2deg);
+}
+
+
+/* =========================================
+   NARRATION
+========================================= */
+
+.narration {
+    position: absolute;
+    top: 70px;
+    left: 60px;
+
+    background: white;
+    border: 4px solid #111;
+
+    padding: 14px 18px;
+
+    font-size: 15px;
+    font-weight: 900;
+
+    box-shadow: 5px 5px 0 #111;
+}
+
+.center-text {
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+
+/* =========================================
+   SPEECH BUBBLES
+========================================= */
+
+.speech-bubble {
+    position: absolute;
+
+    background: white;
+    border: 4px solid #111;
+
+    border-radius: 50%;
+
+    padding: 25px;
+
+    font-weight: bold;
+    font-size: 18px;
+
+    max-width: 280px;
+
+    text-align: center;
+
+    box-shadow: 5px 5px 0 #111;
+}
+
+.speech-bubble::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: -22px;
+    left: 30px;
+
+    width: 25px;
+    height: 25px;
+
+    background: white;
+
+    border-right: 4px solid #111;
+    border-bottom: 4px solid #111;
+
+    transform: rotate(45deg);
+}
+
+
+/* =========================================
+   PANEL 1
+========================================= */
+
+.panel-one {
+    background:
+        radial-gradient(#aaa 1px, transparent 1px),
+        #eee;
+
+    background-size: 12px 12px;
+}
+
+.hero {
+    position: absolute;
+    left: 45%;
+    bottom: 10%;
+
+    width: 150px;
+    height: 300px;
+}
+
+.hero .head {
+    width: 100px;
+    height: 100px;
+
+    border: 7px solid #111;
+    border-radius: 50%;
+
+    background: #ddd;
+
+    margin: auto;
+}
+
+.hero .body {
+    width: 130px;
+    height: 180px;
+
+    background: #333;
+
+    border: 7px solid #111;
+
+    margin: auto;
+
+    border-radius: 30px 30px 5px 5px;
+}
+
+.bubble-one {
+    right: 12%;
+    top: 30%;
+}
+
+.sound-effect {
+    position: absolute;
+
+    right: 10%;
+    bottom: 10%;
+
+    font-size: 60px;
+
+    font-weight: 1000;
+
+    color: #d62828;
+
+    transform: rotate(-10deg);
+
+    text-shadow: 4px 4px 0 #111;
+}
+
+
+/* =========================================
+   PANEL 2
+========================================= */
+
+.panel-two {
+    background: #d8e4e8;
+}
+
+.city-lines {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 45%;
+
+    background:
+        linear-gradient(90deg,
+        transparent 5%,
+        #111 5%,
+        #111 8%,
+        transparent 8%,
+        transparent 20%,
+        #111 20%,
+        #111 24%,
+        transparent 24%,
+        transparent 40%,
+        #111 40%,
+        #111 46%,
+        transparent 46%);
+}
+
+.bubble-two {
+    top: 25%;
+    right: 12%;
+}
+
+.panel-border-warning {
+    position: absolute;
+
+    bottom: 20%;
+    left: 10%;
+
+    padding: 20px;
+
+    border: 5px dashed #d62828;
+
+    font-weight: 1000;
+
+    transform: rotate(-3deg);
+}
+
+.panel-border-warning span {
+    color: #d62828;
+}
+
+.small-sfx {
+    font-size: 35px;
+    bottom: 12%;
+}
+
+
+/* =========================================
+   PANEL 3
+========================================= */
+
+.panel-three {
+    background: #e8e0d0;
+}
+
+.giant-eye {
+    position: absolute;
+
+    width: 300px;
+    height: 180px;
+
+    background: white;
+
+    border: 8px solid #111;
+
+    border-radius: 50%;
+
+    left: 12%;
+    bottom: 25%;
+
+    transform: rotate(-8deg);
+}
+
+.giant-eye::after {
+    content: "";
+
+    position: absolute;
+
+    width: 80px;
+    height: 80px;
+
+    background: #111;
+
+    border-radius: 50%;
+
+    left: 105px;
+    top: 50px;
+}
+
+.bubble-three {
+    right: 10%;
+    top: 25%;
+}
+
+.tiny-button {
+    position: absolute;
+    right: 13%;
+    bottom: 20%;
+}
+
+.reader-response {
+    position: absolute;
+
+    right: 10%;
+    bottom: 10%;
+
+    font-weight: bold;
+
+    color: #d62828;
+}
+
+
+/* =========================================
+   PANEL 4
+========================================= */
+
+.panel-four {
+    background: #191919;
+    color: white;
+}
+
+.glitch-text {
+    font-size: clamp(50px, 9vw, 110px);
+
+    font-weight: 1000;
+
+    line-height: 0.9;
+
+    position: absolute;
+
+    left: 8%;
+    top: 30%;
+
+    transform: rotate(-5deg);
+
+    text-shadow:
+        6px 0 #d62828,
+        -6px 0 #00a6a6;
+}
+
+.broken-panel {
+    position: absolute;
+
+    right: 8%;
+    bottom: 20%;
+
+    border: 6px solid white;
+
+    padding: 20px;
+
+    transform: rotate(5deg);
+
+    font-size: 25px;
+    font-weight: 1000;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.bubble-four {
+    right: 5%;
+    top: 10%;
+
+    color: #111;
+}
+
+.crack {
+    bottom: 5%;
+    left: 40%;
+
+    font-size: 50px;
+}
+
+
+/* =========================================
+   PANEL 5
+========================================= */
+
+.panel-five {
+    background:
+        radial-gradient(#111 1.5px, transparent 1.5px),
+        #f5f0df;
+
+    background-size: 14px 14px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mysterious-symbol {
+    position: absolute;
+
+    display: flex;
+    gap: 8px;
+
+    font-size: clamp(25px, 5vw, 65px);
+
+    font-weight: 1000;
+
+    transform: rotate(-5deg);
+
+    top: 45%;
+}
+
+.mysterious-symbol span {
+    border-bottom: 8px solid #111;
+}
+
+.mysterious-symbol strong {
+    color: #d62828;
+}
+
+.bubble-five {
+    right: 8%;
+    bottom: 10%;
+}
+
+
+/* =========================================
+   PANEL 6
+========================================= */
+
+.panel-six {
+    background: #101010;
+    color: white;
+
+    transition: 0.5s;
+}
+
+.glitch-screen {
+    position: absolute;
+
+    top: 25%;
+    left: 15%;
+
+    font-family: monospace;
+
+    font-size: clamp(25px, 5vw, 70px);
+
+    font-weight: bold;
+
+    line-height: 1.3;
+
+    animation: glitch 0.8s infinite;
+}
+
+@keyframes glitch {
+
+    0% {
+        transform: translate(0);
+    }
+
+    25% {
+        transform: translate(5px, -3px);
+    }
+
+    50% {
+        transform: translate(-4px, 3px);
+    }
+
+    75% {
+        transform: translate(3px, 1px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+
+}
+
+.bubble-six {
+    right: 10%;
+    top: 25%;
+}
+
+.huge-sfx {
+    font-size: clamp(50px, 10vw, 130px);
+    left: 10%;
+    bottom: 8%;
+}
+
+.break-button {
+    position: absolute;
+    right: 10%;
+    bottom: 10%;
+}
+
+
+/* =========================================
+   FRAME BREAK EFFECT
+========================================= */
+
+.frame-breaking {
+    animation: frameBreak 1.5s forwards;
+}
+
+@keyframes frameBreak {
+
+    0% {
+        transform: scale(1);
+    }
+
+    30% {
+        transform: rotate(2deg) scale(1.03);
+    }
+
+    60% {
+        transform: rotate(-3deg) scale(0.98);
+    }
+
+    100% {
+        transform: rotate(0) scale(1.08);
+        border-color: #d62828;
+    }
+}
+
+
+/* =========================================
+   CHOICE PANEL
+========================================= */
+
+.choice-panel {
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #f5f0df;
+}
+
+.choice-panel h2 {
+    font-size: clamp(45px, 8vw, 90px);
+
+    font-weight: 1000;
+
+    margin-bottom: 25px;
+}
+
+.choice-text {
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: bold;
+}
+
+.final-bubble {
+    position: relative;
+
+    margin: 35px auto;
+
+    display: inline-block;
+}
+
+.choices {
+    display: flex;
+    gap: 20px;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+}
+
+.choice-button {
+    min-width: 220px;
+}
+
+
+/* =========================================
+   ENDING
+========================================= */
+
+.ending-panel {
+    min-height: 70vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background: #fff;
+}
+
+#ending-content {
+    max-width: 700px;
+}
+
+.ending-panel h2 {
+    font-size: clamp(45px, 8vw, 90px);
+
+    font-weight: 1000;
+
+    margin: 30px 0;
+
+    line-height: 0.95;
+}
+
+.ending-panel p {
+    font-size: 20px;
+    line-height: 1.6;
+
+    font-weight: bold;
+
+    margin-bottom: 35px;
+}
+
+#ending-art {
+    margin: 30px auto;
+
+    width: 180px;
+    height: 180px;
+
+    border: 8px solid #111;
+
+    transform: rotate(5deg);
+
+    background:
+        radial-gradient(#111 2px, transparent 2px);
+
+    background-size: 12px 12px;
+}
+
+
+/* =========================================
+   FINAL PANEL
+========================================= */
+
+.final-panel {
+    min-height: 100vh;
+
+    background: #080808;
+
+    color: white;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+.final-panel p {
+    font-weight: bold;
+    letter-spacing: 6px;
+
+    margin-bottom: 30px;
+}
+
+.final-panel h2 {
+    font-size: clamp(45px, 10vw, 120px);
+
+    line-height: 0.85;
+
+    font-weight: 1000;
+}
+
+.final-panel h3 {
+    font-size: clamp(25px, 5vw, 55px);
+
+    margin-top: 30px;
+
+    color: #d62828;
+
+    transform: rotate(-3deg);
+}
+
+.final-symbol {
+    margin: 50px;
+
+    font-size: 25px;
+
+    font-weight: 1000;
+
+    border: 4px solid white;
+
+    padding: 15px 25px;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+    background: #111;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 50px;
+
+    line-height: 2;
+}
+
+.footer-small {
+    font-size: 12px;
+
+    opacity: 0.6;
+}
+
+
+/* =========================================
+   SCROLL REVEAL
+========================================= */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(80px) rotate(1deg);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+
+    transform: translateY(0) rotate(0);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    #story {
+        padding: 12px;
+    }
+
+    .comic-panel,
+    .choice-panel,
+    .ending-panel,
+    .final-panel {
+        min-height: 90vh;
+
+        padding: 25px;
+
+        border-width: 5px;
+
+        box-shadow: 7px 7px 0 #000;
+    }
+
+    .cover h1 {
+        letter-spacing: -4px;
+    }
+
+    .subtitle {
+        font-size: 17px;
+    }
+
+    .narration {
+        left: 25px;
+        top: 60px;
+
+        max-width: 80%;
+
+        font-size: 12px;
+    }
+
+    .speech-bubble {
+        font-size: 14px;
+
+        max-width: 210px;
+
+        padding: 18px;
+    }
+
+    .hero {
+        left: 35%;
+        transform: scale(0.8);
+    }
+
+    .giant-eye {
+        left: 5%;
+        transform: scale(0.7);
+    }
+
+    .choices {
+        flex-direction: column;
+    }
+
+    .choice-button {
+        width: 100%;
+    }
+
+    .mysterious-symbol {
+        flex-wrap: wrap;
+        justify-content: center;
+
+        padding: 20px;
+    }
+
+    .glitch-screen {
+        left: 8%;
+        top: 35%;
+    }
+
+    .bubble-four,
+    .bubble-five,
+    .bubble-six {
+        right: 5%;
+    }
+}
